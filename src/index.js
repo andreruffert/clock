@@ -1,7 +1,6 @@
 import Clock from './Clock';
 
 function initApp() {
-  const digitalTime = document.getElementById('js-digital-time');
   const clock = new Clock({
     selectors: {
       handHours: '#js-clock-hand-hours',
