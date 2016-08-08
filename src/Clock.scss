@@ -1,0 +1,81 @@
+//- SETTINGS / UTILS
+
+$clock-hands: (
+  hours: (
+    color: currentColor,
+    width: 12px
+  ),
+  minutes: (
+    color: currentColor,
+    width: 6px
+  ),
+  seconds: (
+    color: limegreen,
+    width: 3px
+  )
+);
+
+@function getClockHand($hand, $key) {
+    @return map-get(map-get($clock-hands, $hand), $key);
+}
+
+@mixin clockHand($key) {
+  background-color: getClockHand($key, color);
+  border-radius: getClockHand($key, width) getClockHand($key, width) 0 0;
+  left: calc(50% - #{getClockHand($key, width)}/2);
+  width: getClockHand($key, width);
+  transform-origin: calc(100% - #{getClockHand($key, width)}/2) 100%;
+}
+
+//- STYLING
+
+.clock {
+  border: 1px dashed;
+  border-radius: 50%;
+  color: white;
+  width: 300px;
+  height: 300px;
+  position: relative;
+
+  &:before {
+    background-color: getClockHand(seconds, color);
+    border-radius: 50%;
+    content: "";
+    display: block;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    z-index: 1;
+  }
+}
+
+.clock__hand {
+  position: absolute;
+  height: 50%;
+  will-change: transform;
+}
+
+.clock__hand--hours {
+  height: 40%;
+  top: 10%;
+
+  @include clockHand(hours);
+}
+
+.clock__hand--minutes {
+  height: 50%;
+
+  @include clockHand(minutes);
+}
+
+.clock__hand--seconds {
+  height: 48%;
+  top: 2%;
+
+  @include clockHand(seconds);
+}
