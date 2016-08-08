@@ -35,7 +35,7 @@ class Clock {
   getTime() {
     const date = new Date(this.state.now);
     return {
-      hours: Math.abs(date.getHours() - 12),
+      hours: date.getHours() % 12,
       minutes: date.getMinutes(),
       seconds: date.getSeconds()
     };
