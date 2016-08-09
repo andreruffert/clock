@@ -34,10 +34,15 @@ class Clock {
 
   getTime() {
     const date = new Date(this.state.now);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    const period = hours < 12 ? 'AM' : 'PM';
     return {
-      hours: ((date.getHours() + 11) % 12 + 1),
-      minutes: date.getMinutes(),
-      seconds: date.getSeconds()
+      hours: ((hours + 11) % 12 + 1),
+      minutes,
+      seconds,
+      period
     };
   }
 
@@ -56,8 +61,8 @@ class Clock {
     this.el.handSeconds.style.transform = `rotate(${angle.seconds}deg)`;
   }
 
-  updateDigitalDisplay({hours, minutes, seconds}) {
-    this.el.digitalDisplay.textContent = `${leftPad(hours, 2, 0)}:${leftPad(minutes, 2, 0)}:${leftPad(seconds, 2, 0)}`;
+  updateDigitalDisplay({hours, minutes, seconds, period}) {
+    this.el.digitalDisplay.textContent = `${leftPad(hours, 2, 0)}:${leftPad(minutes, 2, 0)}:${leftPad(seconds, 2, 0)} ${period}`;
   }
 }
 
