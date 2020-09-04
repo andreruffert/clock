@@ -48,7 +48,7 @@
     "babelify": "^7.3.0",
     "browserify": "^13.1.0",
     "chokidar-cli": "^1.2.0",
-    "clean-css": "^3.4.19",
+    "clean-css": "^4.2.3",
     "live-server": "^1.0.0",
     "minifyify": "^7.3.3",
     "mkdirp": "^0.5.1",
